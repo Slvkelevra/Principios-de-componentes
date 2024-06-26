@@ -172,4 +172,32 @@ Una buena arquitectura permite que las decisiones como **frameworks, base de dat
 etc** se puedan posponer.
 # Arquitectura limpia
 Las arquitecturas limpias se corresponden con aquellas que separan las 
-responsabilidades. Lo hacen separándolas mediante capas.
+responsabilidades. Lo hacen separándolas mediante capas. Estas arquitecturas
+producen sistemas con las siguientes características:
+1. Independencia de frameworks: no nos obliga a acoplarnos a un framework.
+2. Comprobable: las reglas de negocio se pueden comprobar sin una UI o base de datos, 
+ya que se encuentran en una capa independiente.
+3. **Independencia de la base de datos**: podemos utilizar cualquier base de 
+datos, ya que no nos acoplamos a ninguna.
+4. **Independencia de cualquier agente externo**: no nos acoplamos a sistemas
+externos, como brokers de mensajería. Las reglas de negocio son independientes.
+
+# La regla de la dependencia
+Es la regla más importante de las arquitecturas clean. Nos dice que el flujo
+va de fuera hacia dentro. Es decir, capas interiores no deben de saber nada 
+sobre las capas exteriores.
+# Entidades (Entities)
+Incluyen las reglas de negocio fundamentales. Pueden tener métodos o no.
+Mientras se puedan compartir entre aplicaciones, son entidades.
+# Casos de uso (Services)
+Se corresponde con los servicios. Con las reglas de negocio específicas de la 
+aplicación. Esta capa no se ve afectada por cambios en el dominio o 
+cambios en la capa de controller o interface.
+# Adaptadores de interfaz (Controller)
+Aquí se implementan, por ejemplo, los endpoints de un API RESTFull. Aquí
+se utiliza, por ejemplo, los frameworks Flask o FastAPI. Utilizan las 
+implementaciones de los repositorios y modelos de la capa inmediata 
+anterior (Infraestructura)
+# Infraestructura
+Aquí se se implementan las interfaces de la capa repositorio y los modelos 
+de la base de datos.
